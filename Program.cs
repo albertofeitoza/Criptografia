@@ -21,8 +21,8 @@ namespace Apis
         {
                 var cryptography = new Cryptography();
                 string Dados = string.Empty;
-                //string url = "https://api-dominios-dev.pixeon.cloud/api/Dominio/GetAll"; // dev
-                string url = "https://dominios-korus.pixeon.cloud/api/Dominio/GetAll"; // Prd
+                //string url = "Api Teste"; // dev
+                string url = "Api Teste"; // Prd
                 List<DominioModel> response = new List<DominioModel>();
 
                 using (HttpClient request = new HttpClient())
