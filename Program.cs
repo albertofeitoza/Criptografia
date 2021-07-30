@@ -21,9 +21,10 @@ namespace Apis
         {
                 var cryptography = new Cryptography();
                 string Dados = string.Empty;
-                //string url = "Api Teste"; // dev
-                string url = "Api Teste"; // Prd
+                string url = "https://api-dominios-dev.pixeon.cloud/api/Dominio/GetAll"; // dev
+                //string url = "https://dominios-korus.pixeon.cloud/api/Dominio/GetAll"; // Prd
                 List<DominioModel> response = new List<DominioModel>();
+                string nomedoarquivo = string.Empty;
 
                 using (HttpClient request = new HttpClient())
                 {
@@ -38,18 +39,19 @@ namespace Apis
                 {
                     Dados += string.Format("Dados da API de dominio de DEV {0}", Environment.NewLine);
                     Dados += string.Format("{0}|{1}{2}", "Dominio", "ConnectionString", Environment.NewLine);
-
+                    nomedoarquivo = ("D:\\saidaDev.csv");
                 }
                 else
                 {
                     Dados += string.Format("Dados da API de dominio de PRODUÇÃO {0}", Environment.NewLine);
                     Dados += string.Format("{0}|{1}{2}", "Dominio", "ConnectionString", Environment.NewLine);
+                    nomedoarquivo = ("D:\\saidaProd.csv");
                 }
 
                 foreach (var item in response)
                     Dados += string.Format("{0}|{1}{2}", item.Id, cryptography.Decrypt(item.ConnectionString), Environment.NewLine);
 
-                StreamWriter saida = new StreamWriter("D:\\saida.csv", true, Encoding.ASCII);
+                StreamWriter saida = new StreamWriter(nomedoarquivo, true, Encoding.ASCII);
                 saida.Write(Dados);
 
                 saida.Close();
